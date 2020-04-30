@@ -12,16 +12,26 @@ class Todo(db.Model):
     name = db.Column(db.String(200)) 
     date = db.Column(db.DateTime)
     severity = db.Column(db.Integer) 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def todos():
-    now= datetime.now()
-    now = now.strftime("%d/%m/%Y %H:%M:%S")
-    dict =[
-        {'id':1, 'name':'Exploratory Data Analysis', 'date':now ,'severity':2},
-        {'id':2, 'name':'Cleaning Datasets', 'date':now ,'severity':4},
-        {'id':3, 'name':'Data Scraping', 'date':now ,'severity':5}
-    ]
-    return render_template("tasks.html", result=dict)
+    results={}
+    if request.method == 'POST':
+        name = request.form.get('name')
+        date = request.form.get('date')
+        severity = request.form.get('severity')
+        results = {name : date}
+        print(results)
+            
+        
+            
+            
+    
+  #  dict =[
+       # {'id':1, 'name':'Exploratory Data Analysis', 'date':now ,'severity':2},
+        #{'id':2, 'name':'Cleaning Datasets', 'date':now ,'severity':4},
+        #{'id':3, 'name':'Data Scraping', 'date':now ,'severity':5}
+    #]
+    return render_template("tasks.html", results=results, severity=severity)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=5055)
