@@ -8,6 +8,7 @@
 
 <body>
    <div class="container">
+      <h1></h1>
       <h1 class="my-4">Task Manager :)</h1>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
          integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -18,34 +19,48 @@
       <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
          integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
          crossorigin="anonymous"></script>
-      <div>
-         <table class="table">
-            <thead>
-               <tr>
-               <tr>
-                  <th> name </th>
-                  <th> date </th>
-                  <th> severity </th>
+      <div class="form-row">
+
+         {% if tasks|length < 1 %}
+         <p>There is nothing to do for now.</p>
+         {% else %}
+            <table class="table">
+               <thead>
+                  <tr>
+                  <tr>
+                     <th> Name </th>
+                     <th> Date </th>
+                     <th> Importance Level</th>
+                     <th></th>
+
+
+
+                  </tr>
+
+               </thead>
+               <tbody>
+
+                  {% for task in tasks %}
+                  <tr>
+                     <td><a href="">{{ task.name }}</a></td>
+                  <td>{{ task.date }}</td>
+                  <td>{{ task.severity }}</td>
                   
+                  
+                  <td class="text-right"><a class="btn btn-danger btn-sm" href="" role="button">Delete</a></td>
+                  </tr>
 
-               </tr>
+                  {% endfor %}
 
-            </thead>
-            <tbody>
-
-               {% for key,value in results.items() %}
-               <td>{{ key}}</td>
-               <td>{{ value }}</td>
-               
-               {% endfor %}
-
-            </tbody>
+               </tbody>
+               </table>
+         {% endif %}
       </div>
       <div>
          <form action="/" method="POST">
             <div class="form-row">
                <div class="col-sm-16 my-1">
-                  <label for="name" class="sr-only">name:</label>
+                  <label for="task_name" class="sr-only">name:</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Add new task">
                </div>
                <div class="col-sm-2 my-1">
@@ -53,17 +68,17 @@
                      placeholder="DD-MM-YYYY">
 
                </div>
-               <div class="col-sm-16 my-1">
-                  <label for="severity" class="sr-only">severity:</label>
-                  <input type="text" class="form-control" severity="severity" id="severity" placeholder="Enter number between 1 - 5">
-               </div>
                
-                
-                
-
                <div class="col-sm-2 my-1">
                   <button type="submit" class="btn btn-primary btn-block">Add</button>
                </div>
+               
+               </div> 
+
+
+
+
+               
             </div>
 
 
