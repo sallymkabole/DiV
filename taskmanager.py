@@ -44,14 +44,13 @@ def todos():
         return render_template("tasks.html", tasks=tasks)
 
 
-@app.route('/delete/<int:task_id>')
-def delete(task_id):
-    task = Task.query.get_or_404(task_id)
-    try:
-        db.session.delete(task)
-        db.session.commit()
-        return redirect('/')
-    except:
-        return 'Error in Deleting Task'
+@app.route('/delete/<id>/' , methods=['GET', 'POST'])
+def delete(id):
+    task = Task.query.get(id)
+    db.session.delete(task)
+    db.session.commit()
+    return redirect('/')
+    
+        
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5055)
