@@ -47,7 +47,7 @@
                   <td>{{ task.severity }}</td>
                   
                   
-                  <td class="text-right"><a class="btn btn-danger btn-sm" href="" role="button">Delete</a></td>
+                  <td class="text-right"><a class="btn btn-danger btn-sm" href="/delete/{{ task.task_id }}" role="button">Delete</a></td>
                   </tr>
 
                   {% endfor %}
@@ -59,21 +59,20 @@
       <div>
          <form action="/" method="POST">
             <div class="form-row">
-               <div class="col-sm-16 my-1">
+               <div class="col-sm">
                   <label for="task_name" class="sr-only">name:</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Add new task">
                </div>
-               <div class="col-sm-2 my-1">
-                  <input type="date" id="due" name="date" class="form-control" format="dd/mm/yyyy"
-                     placeholder="DD-MM-YYYY">
-
-               </div>
                
-               <div class="col-sm-2 my-1">
+               <div class="col-sm ">
+                  <input type="text"  class="form-control"  name="severity" id="severity" placeholder="Add number between 1-5 to show Severity">
+                </div>
+               
+               <div class="col-sm">
                   <button type="submit" class="btn btn-primary btn-block">Add</button>
                </div>
                
-               </div> 
+             
 
 
 
